@@ -1,0 +1,1 @@
+export const linkStyle = 'text-xl font-bold px-3 py-1 border-white border-solid border-2 rounded-lg select-none cursor-pointer'
