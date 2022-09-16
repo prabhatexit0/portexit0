@@ -4,7 +4,7 @@ import { Footer, Navbar, Main } from '../components'
 
 export default function Home() {
   return (
-    <div className="bg-gray-900 h-screen w-screen">
+    <div className="h-screen w-screen flex flex-col relative">
       <Head>
         <title>Prabhat Sachdeva</title>
         <meta name="description" content="its my portfolio website" />
