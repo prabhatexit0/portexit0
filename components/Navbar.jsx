@@ -7,12 +7,10 @@ export default function Navbar() {
   const handleRouteChange = (link) => {
     router.replace(link)
   }
-  let link
-
   return <div className='font-mono top-7 right-7 px-10 py-6 border-neutral-900 border-b-2'>
     <div className='flex gap-5 justify-center laptop:justify-end'>
       <button onClick={() => handleRouteChange('/home')} className={linkButtonStyle}>Home</button>
-      <button onClick={() => handleRouteChange('/about')} className={linkButtonStyle}>About Me</button>
+      <button onClick={() => handleRouteChange('/about')} className={linkButtonStyle}>About</button>
       <button className={blogsButtonStyle}>Blogs</button>
     </div>
   </div>
