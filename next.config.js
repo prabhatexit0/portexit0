@@ -2,6 +2,15 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/home',
+        permanent: true,
+      },
+    ]
+  },
 }
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
@@ -13,8 +22,6 @@ const withMDX = require('@next/mdx')({
   },
 })
 module.exports = withMDX({
-  // Append the default value with md extensions
+  ...nextConfig,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
 })
-
-module.exports = nextConfig
