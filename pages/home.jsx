@@ -32,7 +32,7 @@ function About() {
 
   return <div className="font-mono">
       <div className="w-4/5"> {/* Container for Main Stuff */}
-        <div className="mt-8">
+        <div className="my-8 tablet:mb-0">
           <button onClick={handleAboutClick} className=" border-2 border-neutral-900 inline-block p-3 mr-10 mb-10 font-semibold 
             hover:bg-emerald-700 transition-all ease-in-out" >Little Dev</button>
           <button onClick={handleAboutClick} className="border-2 border-neutral-900 inline-block font-semibold 
@@ -44,7 +44,7 @@ function About() {
 }
 
 const AboutDialogue = forwardRef(function AboutDialogue({description}, ref) {
-  return <div className="">
+  return <div className="p-2">
     <h1 ref={ref}>{description}</h1>
   </div>
 })
