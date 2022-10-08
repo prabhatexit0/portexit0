@@ -11,9 +11,9 @@ export default function About() {
           </div>
           <div className="mt-8">
             <button className=" border-2 border-neutral-900 inline-block p-3 mr-10 mb-10 font-semibold 
-              hover:bg-emerald-700 transition-all ease-in-out" >Little Little JS</button>
+              hover:bg-emerald-700 transition-all ease-in-out" >Little Dev</button>
             <button className="border-2 border-neutral-900 inline-block font-semibold 
-                p-3 hover:bg-emerald-700 trasition-all ease-in-out">Little Little Leetcode</button>
+                p-3 hover:bg-emerald-700 trasition-all ease-in-out">Little Leetcode</button>
           </div>
         </div>
 
