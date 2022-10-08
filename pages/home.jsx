@@ -38,8 +38,8 @@ function About() {
           <button onClick={handleAboutClick} className="border-2 border-neutral-900 inline-block font-semibold 
               p-3 hover:bg-yellow-600 trasition-all ease-in-out">Little Leetcode</button>
         </div>
-          <AboutDialogue ref={aboutRef} description={about}/>
       </div>
+      <AboutDialogue ref={aboutRef} description={about}/>
   </div>
 }
 
