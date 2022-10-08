@@ -1,7 +1,10 @@
-import Layout from "./layout"
-import TicTacToe from "../components/games/TicTacToe"
+/**
+ * @typedef PageLayoutProps
+ * @property {string} heading
+ */
 
-export default function About() {
+/** @param {PageLayoutProps} props */
+export default function PageLayout({ heading }) {
   return <div className="font-mono">
     <Layout>
       <div className="h-80 w-full flex justify-center items-center mt-20">
