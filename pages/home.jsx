@@ -55,8 +55,8 @@ function About() {
   return (
     <div className="font-mono">
       <div className="w-4/5 mt-3"></div>
-        <p>🐱‍🚀 Looking to work on or contribute to something interesting. </p> 
-        <p>🐱‍🏍 Creating JS/React problems for {" "}
+        <p>🤿 Looking to work on or contribute to something interesting. </p> 
+        <p>🧁 Creating JS/React problems for {" "}
         <a className="text-decoration-line: underline" href="https://devsnest.in/">Devsnest</a>.</p>
     </div>
   );
