@@ -1,8 +1,12 @@
-import { Navbar } from '../components'
+import { Navbar } from "../components";
+import Contact from '../components/Contact'
 
 export default function Layout({ children }) {
-  return <div className=''>
-    <Navbar />
-    {children}
-  </div>
+  return (
+    <div className="h-screen relative">
+      <Navbar />
+      {children}
+      <Contact/>
+    </div>
+  );
 }
