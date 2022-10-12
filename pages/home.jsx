@@ -12,8 +12,8 @@ export default function Home() {
   return (
     <Layout>
       <div className="font-mono h-80 w-full flex flex-col items-center mt-20">
-        <div className="w-4/5">
-          <div className="text-5xl laptop:text-6xl font-bold py-1">
+        <div className="w-10/12">
+          <div className="text-4xl laptop:text-6xl text-left font-bold py-1">
             Prabhat Sachdeva
           </div>
           <About />
