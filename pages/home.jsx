@@ -7,7 +7,7 @@ export default function Home() {
     <Layout>
       <div className="font-mono h-80 w-full flex flex-col items-center mt-20">
         <div className="m-5">
-          <div className="text-5xl laptop:text-6xl font-bold text-left py-1 name">
+          <div className="text-5xl laptop:text-5xl text-left py-1 font-bold mb-8">
             Prabhat Sachdeva
           </div>
           <About />
