@@ -5,7 +5,7 @@ import { forwardRef, useState, useRef } from "react";
 export default function Home() {
   return (
     <Layout>
-      <div className="font-mono h-80 w-full flex flex-col items-center mt-20">
+      <div className="font-mono h-80 w-full flex flex-col justify-center items-center mt-20 animate-pulse">
         <div className="m-5">
           <div className="text-5xl laptop:text-5xl text-left py-1 font-bold mb-8">
             Prabhat Sachdeva
@@ -26,7 +26,7 @@ function About() {
         <p>🧁 Creating JS/React problems for {" "}
           <a className="text-decoration-line: underline" href="https://devsnest.in/">Devsnest</a>.
         </p>
-        <p>🧷 Inventory: JavaScript, TypeScript <span className="italic text-emerald-400">+ versatility</span></p>
+        <p>🧷 Inventory: JavaScript, TypeScript <span className="italic text-blue-400">+ versatility</span></p>
       </div>
     </div>
   );

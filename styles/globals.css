@@ -5,8 +5,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   color: white;
-  background-color: rgb(23, 20, 27);
+  background-image: linear-gradient(#181b21, #111);
 }
+
 
 a {
   color: inherit;
@@ -19,13 +20,13 @@ a {
 
 ::-moz-selection {
   /* Code for Firefox */
-  color: red;
-  background: yellow;
+  color: black;
+  background: black;
 }
 
 ::selection {
-  color: red;
-  background: yellow;
+  color: black;
+  background: white;
 }
 
 @tailwind base;
