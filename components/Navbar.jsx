@@ -7,10 +7,10 @@ export default function Navbar() {
   const handleRouteChange = (link) => {
     router.replace(link)
   }
-  return <div className='font-mono top-7 right-7 p-6'>
+  return <div className='font-mono p-3 w-full'>
     <div className='flex gap-5 justify-center laptop:justify-end'>
       <button onClick={() => handleRouteChange('/home')} className={linkButtonStyle}>Home</button>
-      <button onClick={() => window.close()} className={exit0styles}>exit0</button>
+      <button onClick={() => handleRouteChange('/exit0')} className={exit0styles}>exit0</button>
     </div>
   </div>
 }
