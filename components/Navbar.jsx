@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 const linkButtonStyle = 'p-1 left-5 w-32 top-5 font-bold text-gray-400 hover:text-gray-50 transition-all ease-in-out'
-const exit0styles = 'p-1 left-5 w-32 top-5 font-bold text-gray-400 transition-all ease-in-out'
+const exit0styles = 'p-1 left-5 w-32 top-5 font-bold text-gray-400 hover:text-gray-50 transition-all ease-in-out'
 
 export default function Navbar() {
   const router = useRouter()
