@@ -33,6 +33,10 @@ a {
   display: none;
 }
 
+.editable {
+  -webkit-user-modify: read-write;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
