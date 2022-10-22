@@ -4,10 +4,10 @@ export default function Contact() {
 	return <ContactContainer>
 		<p>Looking for a versatile developer?</p>
 		<div className="flex gap-1 items-center">
-			<a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/prabhatexit0/" className="hover:text-black">
+			<a target="_blank" rel="noreferrer" href="https://github.com/prabhatexit0" className="hover:text-black">
 				<AiOutlineGithub size={23} />
 			</a>
-			<a target="_blank" rel="noreferrer" href="https://github.com/prabhatexit0" className="hover:text-black">
+			<a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/prabhatexit0/" className="hover:text-black">
 				<AiFillLinkedin size={23} />
 			</a>
 		</div>

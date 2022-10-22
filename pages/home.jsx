@@ -1,11 +1,12 @@
 import Layout from "./layout";
-import TicTacToe from '../components/games/TicTacToe'
+import Executor from '../components/games/Executor'
 
-export default function Home() {
+// noinspection JSUnusedGlobalSymbols
+export default function Home(){
   return (
     <Layout heading={"Prabhat Sachdeva"}>
       <About />
-      <TicTacToe />
+      <Executor />
     </Layout >
   );
 }
