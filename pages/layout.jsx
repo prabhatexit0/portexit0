@@ -9,7 +9,7 @@ export default function Layout({ children }) {
       <Navbar />
       <ChildrenContainer>
         {
-          children.map((child, idx) =>
+          children && children.map((child, idx) =>
             <ChildWrapper key={idx} bg={bgColors[0]}>{child}</ChildWrapper>
           )
         }
