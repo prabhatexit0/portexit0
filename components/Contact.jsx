@@ -15,5 +15,5 @@ export default function Contact() {
 }
 
 const ContactContainer = ({ children }) =>
-	<div className="font-mono bg-blue-900 p-2 px-3 
+	<div className="font-mono text-sm bg-blue-900 p-2 px-3 
 	bottom-0 flex gap-4 justify-center">{children}</div>

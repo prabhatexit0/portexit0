@@ -30,4 +30,4 @@ const LayoutContainer = ({ children }) =>
 const ChildrenContainer = ({ children }) =>
   <div className="overflow-y-scroll m-2 p-5 h-full w-full flex flex-col items-center gap-5">{children}</div>
 
-const ChildWrapper = ({ children, bg }) => <Draggable><div className={`p-4 ${bg} w-full laptop:w-5/12`}>{children}</div></Draggable> 
+const ChildWrapper = ({ children, bg }) => <><div className={`p-4 ${bg} w-full laptop:w-5/12`}>{children}</div></> 
