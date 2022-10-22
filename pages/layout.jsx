@@ -2,25 +2,32 @@ import { Navbar } from "../components";
 import Contact from '../components/Contact'
 import Draggable from "react-draggable";
 
-
-export default function Layout({ heading, children }) {
+export default function Layout({ children }) {
+  let bgColors = ["bg-blue-900"]
   return (
-    <div className="font-mono h-screen flex flex-col items-center overflow-hidden">
+    <LayoutContainer>
       <Navbar />
-      <div className="w-11/12 h-full gap-5 tablet:w-2/3 laptop:w-1/2 p-5 
-      laptop:p-30 py-28 text-gray-300
-      flex flex-col
-      ">
-        <Draggable>
-          <div className="bg-blue-900 p-5 cursor-pointer">
-            <h1 className="text-3xl font-bold text-white">{heading}</h1>
-            <div className="">
-              {children}
-            </div>
-          </div>
-        </Draggable>
+      <ChildrenContainer>
+        {
+          children.map((child, idx) =>
+            <ChildWrapper key={idx} bg={bgColors[0]}>{child}</ChildWrapper>
+          )
+        }
+      </ChildrenContainer>
+      <div className="sticky bottom-0 w-full">
+        <Contact />
       </div>
-      <Contact />
-    </div>
+    </LayoutContainer>
   );
 }
+
+const LayoutContainer = ({ children }) =>
+  <div className="font-mono h-screen relative 
+    flex flex-col items-center">
+    {children}
+  </div>
+
+const ChildrenContainer = ({ children }) =>
+  <div className="overflow-y-scroll m-2 p-5 h-full w-full flex flex-col items-center gap-5">{children}</div>
+
+const ChildWrapper = ({ children, bg }) => <Draggable><div className={`p-4 ${bg} w-full laptop:w-5/12`}>{children}</div></Draggable> 
