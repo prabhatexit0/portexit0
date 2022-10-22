@@ -28,7 +28,7 @@ export default function Executor() {
   return <div className="font-mono flex flex-col gap-2 executor">
     <h1 className="font-bold text-3xl">Execute JS</h1>
     <div className="relative">
-      <pre ref={preRef} className="h-40 w-full border-2 focus:outline-none p-2 select-text overflow-auto editable" spellCheck="false" contentEditable>// Work in progress, might not work!</pre>
+      <pre ref={preRef} className="h-40 w-full border-2 focus:outline-none p-2 select-text overflow-auto editable" spellCheck="false" contentEditable>{"// Work in progress, might not work!"}</pre>
       <button onClick={handleFileCreation} className="p-2 font-bold w-max bg-black absolute bottom-0 right-0 m-2">Run</button>
     </div>
     <div className="max-h-28 overflow-auto">Result: {!isLoading ? <pre>{result}</pre> : "Loading..."} </div>
