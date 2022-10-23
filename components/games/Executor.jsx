@@ -8,7 +8,7 @@ const URL = 'https://rocky-dawn-53721.herokuapp.com/run'
 export default function Executor() {
   const [result, setResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [codeString, setCodeString] = useState("")
+  const [codeString, setCodeString] = useState("// Work in progress, might not work!")
 
   const handleFileCreation = async () => {
     setIsLoading(true)
@@ -46,9 +46,9 @@ export default function Executor() {
           })
         ]}
       />
-      <button onClick={handleFileCreation} className="p-2 font-bold w-max bg-white
-        text-black absolute bottom-0 right-0 m-2">Run</button>
+      <button onClick={handleFileCreation} className="p-2 font-bold w-max bg-[#295]
+        text-white absolute bottom-0 right-0 m-2">Run</button>
     </div>
-    <div className="max-h-28 overflow-auto">Result: {!isLoading ? <pre>{result}</pre> : "Loading..."} </div>
+    <div className="max-h-28 overflow-auto font-bold">Result: {!isLoading ? <pre className="font-normal">{result}</pre> : "Loading..."} </div>
   </div>
 }
