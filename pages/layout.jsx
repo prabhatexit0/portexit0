@@ -1,6 +1,5 @@
 import { Navbar } from "../components";
 import Contact from '../components/Contact'
-import Draggable from "react-draggable";
 
 export default function Layout({ children }) {
   let bgColors = ["bg-blue-900"]

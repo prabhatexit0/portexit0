@@ -1,16 +1,17 @@
-import { useState } from "react"
-import { useRef } from "react"
+import { useState, useRef } from "react"
+import ReactCodeMirror, { basicSetup } from "@uiw/react-codemirror";
+import { javascript } from "@codemirror/lang-javascript";
+import {dracula} from "@uiw/codemirror-themes-all";
 
 const URL = 'https://rocky-dawn-53721.herokuapp.com/run'
 
 export default function Executor() {
-  const preRef = useRef()
   const [result, setResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [codeString, setCodeString] = useState("")
 
   const handleFileCreation = async () => {
     setIsLoading(true)
-    let codeString = preRef.current.innerText
     let responseData = await (await fetch(URL, {
       method: 'POST',
       body: JSON.stringify({ "code": codeString }),
@@ -28,8 +29,25 @@ export default function Executor() {
   return <div className="font-mono flex flex-col gap-2 executor">
     <h1 className="font-bold text-3xl">Execute JS</h1>
     <div className="relative">
-      <pre ref={preRef} className="h-40 w-full border-2 text-sm focus:outline-none p-2 select-text overflow-auto editable" spellCheck="false" contentEditable>{"// Work in progress, might not work!"}</pre>
-      <button onClick={handleFileCreation} className="p-2 font-bold w-max bg-black absolute bottom-0 right-0 m-2">Run</button>
+      <ReactCodeMirror
+        value={codeString}
+        onChange={value => setCodeString(value)}
+        className="text-black max-h-40 overflow-auto"
+        options={{
+          mode: "jsx",
+        }}
+        theme={dracula}
+        height="200px"
+        extensions={[
+          javascript(),
+          basicSetup({
+            autocompletion: true,
+            foldGutter: true
+          })
+        ]}
+      />
+      <button onClick={handleFileCreation} className="p-2 font-bold w-max bg-white
+        text-black absolute bottom-0 right-0 m-2">Run</button>
     </div>
     <div className="max-h-28 overflow-auto">Result: {!isLoading ? <pre>{result}</pre> : "Loading..."} </div>
   </div>
