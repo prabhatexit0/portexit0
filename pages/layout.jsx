@@ -2,12 +2,11 @@ import { Navbar } from "../components";
 import Contact from '../components/Contact'
 
 export default function Layout({ children }) {
-  let bgColors = ["bg-blue-900", "bg-[#112]"]
+  let bgColors = ["bg-blue-900", "bg-[#151523]"]
   return (
     <LayoutContainer>
       <Navbar />
       <ChildrenContainer>
-        <div className="h-20"></div>
         {
           children && children.map((child, idx) =>
             <ChildWrapper key={idx} bg={bgColors[idx]}>{child}</ChildWrapper>
