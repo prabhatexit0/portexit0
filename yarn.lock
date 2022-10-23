@@ -319,6 +319,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@replit/codemirror-vim@^6.0.3":
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/@replit/codemirror-vim/-/codemirror-vim-6.0.3.tgz#8d75a3160a95530ea00c5e87d3d925e20bf2ae89"
+  integrity sha512-b2eBaTASDmRZahpPSIjHM1mBoIJ/ycPiBAiOOKgOJwX7dgVXP2nCwJHvmQwn5JqBUO08SN3cpTYQcih2U2/TTA==
+
 "@rushstack/eslint-patch@^1.1.3":
   version "1.1.4"
   resolved "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.1.4.tgz"
