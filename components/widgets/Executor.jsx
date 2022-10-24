@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react"
+import { useState } from "react"
 import ReactCodeMirror, { basicSetup  } from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import {dracula} from "@uiw/codemirror-themes-all";
