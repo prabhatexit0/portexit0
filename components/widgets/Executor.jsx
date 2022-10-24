@@ -68,7 +68,7 @@ export default function Executor() {
     </div>
     <div className="max-h-28 overflow-auto font-bold">
       Result: {!isLoading ?
-      <pre className={`font-normal p-1 bg-[#252533] ${codeError ? "text-red-500" : "text-white"}`}>{result}</pre> :
+      <pre className={`font-normal ${result && "p-1"} bg-[#252533] ${codeError ? "text-red-500" : "text-white"}`}>{result}</pre> :
       "Loading..."}
     </div>
   </div>
