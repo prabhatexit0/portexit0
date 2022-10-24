@@ -17,7 +17,7 @@ export default function Layout({ children }) {
           )
         }
       </ChildrenContainer>
-      <div className="sticky bottom-0 w-full">
+      <div className="fixed bottom-0 w-full">
         <Contact />
       </div>
     </LayoutContainer>

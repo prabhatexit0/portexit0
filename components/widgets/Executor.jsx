@@ -1,5 +1,5 @@
 import { useState } from "react"
-import ReactCodeMirror, { basicSetup  } from "@uiw/react-codemirror";
+import ReactCodeMirror, { basicSetup } from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import {dracula} from "@uiw/codemirror-themes-all";
 import { vim } from '@replit/codemirror-vim'
