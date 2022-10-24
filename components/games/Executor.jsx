@@ -1,10 +1,10 @@
-import { useState } from "react"
+import {useEffect, useState} from "react"
 import ReactCodeMirror, { basicSetup  } from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import {dracula} from "@uiw/codemirror-themes-all";
 import { vim } from '@replit/codemirror-vim'
 
-const URL = 'https://rocky-dawn-53721.herokuapp.com/run'
+const URL = `https://rocky-dawn-53721.herokuapp.com/run`
 
 export default function Executor() {
   const [result, setResult] = useState("")
@@ -68,7 +68,7 @@ export default function Executor() {
     </div>
     <div className="max-h-28 overflow-auto font-bold">
       Result: {!isLoading ?
-      <pre className={`font-normal ${codeError ? "text-red-500" : "text-white"}`}>{result} </pre> :
+      <pre className={`font-normal p-1 bg-[#252533] ${codeError ? "text-red-500" : "text-white"}`}>{result}</pre> :
       "Loading..."}
     </div>
   </div>
