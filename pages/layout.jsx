@@ -1,10 +1,14 @@
 import { Navbar } from "../components";
 import Contact from '../components/Contact'
+import Head from 'next/head'
 
 export default function Layout({ children }) {
-  let bgColors = ["bg-blue-900", "bg-[#151523]"]
+  let bgColors = ["bg-blue-900", "bg-[#151523]", "bg-neutral-900"]
   return (
     <LayoutContainer>
+      <Head>
+        <title>exit0</title>
+      </Head>
       <Navbar />
       <ChildrenContainer>
         {
