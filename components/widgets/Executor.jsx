@@ -50,7 +50,7 @@ export default function Executor() {
     <button onClick={handleVimToggle} className={`px-2 font-bold w-max 
       ${ isVim ? "bg-yellow-300 text-black" : "bg-gray-700 text-white" } 
       text-white absolute right-0 top-0`}>Vim</button>
-    <h1 className="font-bold text-3xl">Execute JS</h1>
+    <h1 className="font-bold text-2xl">Execute JS</h1>
     <div className="relative">
       <ReactCodeMirror
         value={codeString}

@@ -13,9 +13,9 @@ export default function Leetcode({ data }) {
   const NOT_AVAILABLE = "N/A"
 
   return <LeetcodeContainer>
-    <h1 className="text-3xl font-bold text-white">Leetcode</h1>
-      <div className="flex justify-between laptop:justify-evenly items-center w-full mt-2">
-        <div className="flex flex-col items-center border-2 border-neutral-600 rounded-full p-5">
+    <h1 className="text-2xl font-bold text-white">Leetcode</h1>
+      <div className="flex justify-between tablet:justify-evenly items-center w-full mt-2">
+        <div className="flex flex-col items-center">
           <h1 className="text-4xl font-bold">{all?.count ?? NOT_AVAILABLE}</h1>
           <p className="text-lg">solved</p>
         </div>

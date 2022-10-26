@@ -1,5 +1,4 @@
 import { Navbar } from "../components";
-import Contact from '../components/Contact'
 import Head from 'next/head'
 
 export default function Layout({ children }) {
@@ -10,27 +9,19 @@ export default function Layout({ children }) {
         <title>exit0</title>
       </Head>
       <Navbar />
-      <ChildrenContainer>
         {
           children && children.map((child, idx) =>
-            <ChildWrapper key={idx} bg={bgColors[idx]}>{child}</ChildWrapper>
+            <ChildWrapper key={idx} bg={bgColors[idx % 3]}>{child}</ChildWrapper>
           )
         }
-      </ChildrenContainer>
-      <div className="fixed bottom-0 w-full">
-        <Contact />
-      </div>
     </LayoutContainer>
   );
 }
 
 const LayoutContainer = ({ children }) =>
-  <div className="font-mono h-screen relative 
+  <div className="font-mono relative pb-10
     flex flex-col items-center">
     {children}
   </div>
 
-const ChildrenContainer = ({ children }) =>
-  <div className="overflow-y-scroll m-2 p-5 h-full w-full flex flex-col items-center gap-5">{children}</div>
-
-const ChildWrapper = ({ children, bg }) => <><div className={`p-4 ${bg} w-full laptop:w-5/12`}>{children}</div></> 
+const ChildWrapper = ({ children, bg }) => <><div className={`p-4 m-2 mb-0 ${bg} w-[90%] laptop:w-5/12`}>{children}</div></>

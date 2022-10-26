@@ -1,8 +1,7 @@
 export default function About() {
   return (
     <AboutContainer>
-      <h1 className="text-3xl font-bold text-white">Prabhat Sachdeva</h1>
-      <p>🌟 Budding Software Engineer</p>
+      <h1 className="text-2xl font-bold text-white">Prabhat Sachdeva</h1>
       <p>🤿 Always looking to work on or contribute to something interesting. </p>
       <p>🧁 Creating JS/React problems for {" "}
         <a className="text-decoration-line: underline" href="https://devsnest.in/">Devsnest</a>.
