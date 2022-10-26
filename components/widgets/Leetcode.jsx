@@ -20,18 +20,18 @@ export default function Leetcode({ data }) {
           <p className="text-lg">solved</p>
         </div>
 
-        <div className="w-40 flex flex-col">
+        <div className="w-32 flex flex-col">
           <SmallContainer textColor="text-green-400">
-            <p className="text-white text-lg">Easy</p>
-            <p className="text-3xl font-bold">{easy?.count ?? NOT_AVAILABLE}</p>
+            <p className="text-white">Easy</p>
+            <p className="text-2xl font-bold">{easy?.count ?? NOT_AVAILABLE}</p>
           </SmallContainer>
           <SmallContainer textColor="text-yellow-400">
-            <p className="text-white text-lg">Medium</p>
-            <p className="text-3xl font-bold">{medium?.count ?? NOT_AVAILABLE}</p>
+            <p className="text-white">Medium</p>
+            <p className="text-2xl font-bold">{medium?.count ?? NOT_AVAILABLE}</p>
           </SmallContainer>
           <SmallContainer textColor="text-red-400">
-            <p className="text-white text-lg">Hard</p>
-            <p className="text-3xl font-bold">{hard?.count ?? NOT_AVAILABLE}</p>
+            <p className="text-white">Hard</p>
+            <p className="text-2xl font-bold">{hard?.count ?? NOT_AVAILABLE}</p>
           </SmallContainer>
       </div>
     </div>

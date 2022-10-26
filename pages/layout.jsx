@@ -2,7 +2,6 @@ import { Navbar } from "../components";
 import Head from 'next/head'
 
 export default function Layout({ children }) {
-  let bgColors = ["bg-blue-900", "bg-[#151523]", "bg-neutral-900"]
   return (
     <LayoutContainer>
       <Head>
@@ -11,7 +10,7 @@ export default function Layout({ children }) {
       <Navbar />
         {
           children && children.map((child, idx) =>
-            <ChildWrapper key={idx} bg={bgColors[idx % 3]}>{child}</ChildWrapper>
+            <ChildWrapper key={idx} bg={"border-2 border-zinc-800"}>{child}</ChildWrapper>
           )
         }
     </LayoutContainer>
