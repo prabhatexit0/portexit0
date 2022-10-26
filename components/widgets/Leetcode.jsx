@@ -11,6 +11,12 @@ function getQuestionsData(data) {
 export default function Leetcode({ data }) {
   const [all, easy, medium, hard] = getQuestionsData(data) ?? []
   const NOT_AVAILABLE = "N/A"
+  const difficultyColor = ["text-green-400", "text-yellow-400", "text-red-400"]
+
+  let problemCountObjects = [easy, medium, hard].map((x, idx) => {
+    x.color = difficultyColor[idx]
+    return x
+  })
 
   return <LeetcodeContainer>
     <h1 className="text-2xl font-bold text-white">Leetcode</h1>
@@ -21,18 +27,12 @@ export default function Leetcode({ data }) {
         </div>
 
         <div className="w-32 flex flex-col">
-          <SmallContainer textColor="text-green-400">
-            <p className="text-white">Easy</p>
-            <p className="text-2xl font-bold">{easy?.count ?? NOT_AVAILABLE}</p>
-          </SmallContainer>
-          <SmallContainer textColor="text-yellow-400">
-            <p className="text-white">Medium</p>
-            <p className="text-2xl font-bold">{medium?.count ?? NOT_AVAILABLE}</p>
-          </SmallContainer>
-          <SmallContainer textColor="text-red-400">
-            <p className="text-white">Hard</p>
-            <p className="text-2xl font-bold">{hard?.count ?? NOT_AVAILABLE}</p>
-          </SmallContainer>
+          {
+            problemCountObjects?.map((ele, idx) => <SmallContainer key={idx} textColor={ele.color}>
+              <p className="text-white">{ele?.difficulty}</p>
+              <p className="text-2xl font-bold">{ele?.count ?? NOT_AVAILABLE}</p>
+            </SmallContainer>)
+          }
       </div>
     </div>
 
