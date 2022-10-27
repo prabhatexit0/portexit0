@@ -10,8 +10,8 @@ function getQuestionsData(data) {
 
 export default function Leetcode({ data }) {
   const [all, easy, medium, hard] = getQuestionsData(data) ?? []
-  const NOT_AVAILABLE = "N/A"
   const difficultyColor = ["text-green-400", "text-yellow-400", "text-red-400"]
+  const NOT_AVAILABLE = "N/A"
 
   let problemCountObjects = [easy, medium, hard].map((x, idx) => {
     x.color = difficultyColor[idx]
@@ -37,11 +37,15 @@ export default function Leetcode({ data }) {
     </div>
 
     <a href="https://leetcode.com/prabhatexit0" rel="noreferrer" target="_blank"
-      className="bg-yellow-500 hover:bg-green-500 text-black font-bold w-max p-1 absolute top-0 right-0 cursor-pointer select-none">prabhatexit0</a>
+      className="bg-yellow-500 hover:bg-green-500 text-black font-bold w-max p-1
+      absolute top-0 right-0 cursor-pointer select-none">
+      prabhatexit0
+    </a>
   </LeetcodeContainer>
 }
 
 const LeetcodeContainer = ({ children }) =>
   <div className="font-mono flex text-sm flex-col relative">{children}</div>
 
-const SmallContainer = ({children, textColor}) => <div className={`flex w-full justify-between items-center ${textColor}`}>{children}</div>
+const SmallContainer = ({children, textColor}) =>
+  <div className={`flex w-full justify-between items-center ${textColor}`}>{children}</div>
