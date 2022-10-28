@@ -1,7 +1,8 @@
 import {useState, useRef} from "react";
 import Image from 'next/image'
 
-const DIRECTIONS = [[0, -1], [-1, 0], [1, 0], [0, 1], [1, 1], [-1, 1], [1, -1], [-1, -1]]
+const Directions = [[0, -1], [-1, 0], [1, 0], [0, 1], [1, 1], [-1, 1], [1, -1], [-1, -1]]
+
 const isValidCoordinate = (i, j, size) => {
   return i >= 0 && i < size && j >= 0 && j < size
 }
@@ -22,13 +23,13 @@ const getBoard = (size) => {
     .map(() => Array(size).fill(null)
       .map(() => getBlock(getRandomIndex() % 5 === 0, false, 0)))
 
-  for(let i = 0; i < size; i++) {
-    for(let j = 0; j < size; j++) {
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
       let bombCount = 0
-      for(let d of DIRECTIONS) {
+      for (let d of Directions) {
         let newI = i + d[0], newJ = j + d[1]
-        if(newI < size && newI >= 0 && newJ >= 0 && newJ < size) {
-          if(board[newI][newJ].isBomb) bombCount++
+        if (newI < size && newI >= 0 && newJ >= 0 && newJ < size) {
+          if (board[newI][newJ].isBomb) bombCount++
         }
       }
       board[i][j].bombsAround = bombCount
@@ -39,9 +40,9 @@ const getBoard = (size) => {
 
 const getCoordinates = (blockId, blocksMatrix) => {
   const size = blocksMatrix.length
-  for(let i = 0; i < size; i++) {
-    for(let j = 0; j < size; j++) {
-      if(blocksMatrix[i][j].id === blockId) {
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+      if (blocksMatrix[i][j].id === blockId) {
         return [i, j]
       }
     }
@@ -58,27 +59,27 @@ export default function Minesweeper() {
 
   const blockClick = (blockId) => {
     const [x, y] = getCoordinates(blockId, blocksMatrix)
-    if(isGameOver || blocksMatrix[x][y].isClicked) return
+    if (isGameOver || blocksMatrix[x][y].isClicked) return
 
     const mutableBlocksMatrix = [...blocksMatrix]
     mutableBlocksMatrix[x][y].isClicked = true
 
-    if(blocksMatrix[x][y].isBomb) {
+    if (blocksMatrix[x][y].isBomb) {
       setIsGameOver(true)
     }
 
-    if(!numberOfMoves.current) {
-      for(let [i, j] of DIRECTIONS) {
-        let newI = x+i, newJ = y+j
-        if(isValidCoordinate(newI, newJ, size) && !mutableBlocksMatrix[newI][newJ].isBomb) {
+    if (!numberOfMoves.current) {
+      for (let [i, j] of Directions) {
+        let newI = x + i, newJ = y + j
+        if (isValidCoordinate(newI, newJ, size) && !mutableBlocksMatrix[newI][newJ].isBomb) {
           mutableBlocksMatrix[newI][newJ].isClicked = true
-          if(mutableBlocksMatrix[newI][newJ].bombsAround === 0)
+          if (mutableBlocksMatrix[newI][newJ].bombsAround === 0)
             dfs(newI, newJ, mutableBlocksMatrix)
         }
       }
     }
 
-    if(mutableBlocksMatrix[x][y].bombsAround === 0)
+    if (mutableBlocksMatrix[x][y].bombsAround === 0)
       dfs(x, y, mutableBlocksMatrix)
 
     setBlocksMatrix(mutableBlocksMatrix)
@@ -87,11 +88,11 @@ export default function Minesweeper() {
 
   let vis = Array(size).fill(null).map(() => Array(size).fill(false))
   const dfs = (i, j, mutableBlocksMatrix) => {
-    if(mutableBlocksMatrix[i][j].bombsAround !== 0 || vis[i][j]) return
+    if (mutableBlocksMatrix[i][j].bombsAround !== 0 || vis[i][j]) return
     vis[i][j] = true
-    for(let [x, y] of DIRECTIONS) {
-      let newI = x+i, newJ = y+j
-      if(isValidCoordinate(newI, newJ, mutableBlocksMatrix.length)) {
+    for (let [x, y] of Directions) {
+      let newI = x + i, newJ = y + j
+      if (isValidCoordinate(newI, newJ, mutableBlocksMatrix.length)) {
         mutableBlocksMatrix[newI][newJ].isClicked = true
         dfs(newI, newJ, mutableBlocksMatrix)
       }
@@ -111,7 +112,7 @@ export default function Minesweeper() {
       <div className="flex flex-col gap-1 tablet:gap-1.5 w-max">
         {
           blocksMatrix.map((blocksRow, idx) =>
-            <div className="flex gap-1 tablet:gap-1.5" key={idx} >
+            <div className="flex gap-1 tablet:gap-1.5" key={idx}>
               {blocksRow.map(block =>
                 <Block block={block} blockClick={blockClick} key={block.id}/>)}
             </div>
@@ -120,12 +121,12 @@ export default function Minesweeper() {
       </div>
       {
         isGameOver &&
-          <div className="w-full h-full absolute flex
+        <div className="w-full h-full absolute flex
           justify-center items-center z-10">
-            <div className="bg-red-800 text-xl font-bold p-2 shadow-xl animate-bounce">
-              <h1>Game Over</h1>
-            </div>
+          <div className="bg-red-800 text-xl font-bold p-2 shadow-xl animate-bounce">
+            <h1>Game Over</h1>
           </div>
+        </div>
       }
     </div>
     <div className="flex justify-end font-bold">
@@ -135,7 +136,7 @@ export default function Minesweeper() {
 }
 
 const Block = ({block, blockClick}) => {
-  const { isBomb, bombsAround, id, isClicked } = block
+  const {isBomb, bombsAround, id, isClicked} = block
 
   const handleClick = () => {
     blockClick(id)
@@ -145,10 +146,10 @@ const Block = ({block, blockClick}) => {
 
   return <div onClick={handleClick} className={`h-8 w-8 tablet:h-10 tablet:w-10 
     flex justify-center items-center font-bold 
-    ${bombsAround === 0 && isClicked ? "bg-zinc-400" : colors[bombsAround-1 % colors.length]}`}>
+    ${bombsAround === 0 && isClicked ? "bg-zinc-400" : colors[bombsAround - 1 % colors.length]}`}>
     {
       isClicked ? (isBomb ?
-        <Image src='/bomb.png' height={32} width={32} alt="bomb image"/> : bombsAround !== 0 && bombsAround) :
+          <Image src='/bomb.png' height={32} width={32} alt="bomb image"/> : bombsAround !== 0 && bombsAround) :
         <div className="bg-zinc-300 h-full w-full"></div>
     }
   </div>
