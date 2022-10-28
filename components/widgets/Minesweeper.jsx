@@ -1,24 +1,23 @@
 import {useState, useRef} from "react";
 import Image from 'next/image'
 
-const getBlock = (function blockMaker() {
-  blockMaker.id = 0
-  return function block(isBomb, isClicked, bombsAround) {
-    return {
-      isBomb: isBomb,
-      isClicked: isClicked,
-      bombsAround: bombsAround,
-      id: ++blockMaker.id
-    }
-  }
-})()
-
 const DIRECTIONS = [[0, -1], [-1, 0], [1, 0], [0, 1], [1, 1], [-1, 1], [1, -1], [-1, -1]]
 const isValidCoordinate = (i, j, size) => {
   return i >= 0 && i < size && j >= 0 && j < size
 }
 
 const getBoard = (size) => {
+  const getBlock = (function blockMaker() {
+    let blockId = 0
+    return function block(isBomb, isClicked, bombsAround) {
+      return {
+        isBomb: isBomb,
+        isClicked: isClicked,
+        bombsAround: bombsAround,
+        id: ++blockId
+      }
+    }
+  })()
   const board = Array(size).fill(null)
     .map(() => Array(size).fill(null)
       .map(() => getBlock(getRandomIndex() % 5 === 0, false, 0)))
@@ -55,18 +54,19 @@ export default function Minesweeper() {
   const size = 8
   const [blocksMatrix, setBlocksMatrix] = useState(() => getBoard(size))
   const numberOfMoves = useRef(0)
-  const isGameOver = useRef(false)
+  const [isGameOver, setIsGameOver] = useState(false)
+  console.log(blocksMatrix)
 
   const blockClick = (blockId) => {
     const [x, y] = getCoordinates(blockId, blocksMatrix)
-    if(isGameOver.current || blocksMatrix[x][y].isClicked) return
-    if(blocksMatrix[x][y].isBomb) {
-      isGameOver.current = true
-      return
-    }
+    if(isGameOver || blocksMatrix[x][y].isClicked) return
 
     const mutableBlocksMatrix = [...blocksMatrix]
     mutableBlocksMatrix[x][y].isClicked = true
+
+    if(blocksMatrix[x][y].isBomb) {
+      setIsGameOver(true)
+    }
 
     if(!numberOfMoves.current) {
       for(let [i, j] of DIRECTIONS) {
@@ -97,7 +97,7 @@ export default function Minesweeper() {
   }
 
   const resetBoard = () => {
-    isGameOver.current = false
+    setIsGameOver(false)
     numberOfMoves.current = 0
     setBlocksMatrix(getBoard(size))
   }
@@ -105,7 +105,7 @@ export default function Minesweeper() {
   return <div className="w-full">
     <h1 className="text-2xl font-bold">Colorful Minesweeper</h1>
     <p className="text-sm">under construction!</p>
-    <div className="w-full flex justify-center mt-2 mb-2">
+    <div className="w-full flex justify-center mt-2 mb-2 relative">
       <div className="flex flex-col gap-1 tablet:gap-1.5 w-max">
         {
           blocksMatrix.map((blocksRow, idx) =>
@@ -116,6 +116,15 @@ export default function Minesweeper() {
           )
         }
       </div>
+      {
+        isGameOver &&
+          <div className="w-full h-full absolute flex
+          justify-center items-center z-10">
+            <div className="bg-red-800 text-xl font-bold p-2 shadow-xl animate-bounce">
+              <h1>Game Over</h1>
+            </div>
+          </div>
+      }
     </div>
     <div className="flex justify-end font-bold">
       <button onClick={resetBoard} className="bg-red-500 p-1">Reset Board</button>
