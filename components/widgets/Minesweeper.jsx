@@ -79,6 +79,9 @@ export default function Minesweeper() {
       }
     }
 
+    if(mutableBlocksMatrix[x][y].bombsAround === 0)
+      dfs(x, y, mutableBlocksMatrix)
+
     setBlocksMatrix(mutableBlocksMatrix)
     numberOfMoves.current++
   }
