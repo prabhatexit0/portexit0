@@ -1,7 +1,7 @@
 import {useState, useRef} from "react";
 import Image from 'next/image'
 
-let getBlock = (function blockMaker() {
+const getBlock = (function blockMaker() {
   blockMaker.id = 0
   return function block(isBomb, isClicked, bombsAround) {
     return {
@@ -13,16 +13,20 @@ let getBlock = (function blockMaker() {
   }
 })()
 
+const DIRECTIONS = [[0, -1], [-1, 0], [1, 0], [0, 1], [1, 1], [-1, 1], [1, -1], [-1, -1]]
+const isValidCoordinate = (i, j, size) => {
+  return i >= 0 && i < size && j >= 0 && j < size
+}
+
 const getBoard = (size) => {
-  let board = Array(size).fill(null)
+  const board = Array(size).fill(null)
     .map(() => Array(size).fill(null)
       .map(() => getBlock(getRandomIndex() % 5 === 0, false, 0)))
 
-  let dir = [[0, -1], [-1, 0], [1, 0], [0, 1], [1, 1], [-1, 1], [1, -1], [-1, -1]]
   for(let i = 0; i < size; i++) {
     for(let j = 0; j < size; j++) {
       let bombCount = 0
-      for(let d of dir) {
+      for(let d of DIRECTIONS) {
         let newI = i + d[0], newJ = j + d[1]
         if(newI < size && newI >= 0 && newJ >= 0 && newJ < size) {
           if(board[newI][newJ].isBomb) bombCount++
@@ -31,8 +35,18 @@ const getBoard = (size) => {
       board[i][j].bombsAround = bombCount
     }
   }
-
   return board
+}
+
+const getCoordinates = (blockId, blocksMatrix) => {
+  const size = blocksMatrix.length
+  for(let i = 0; i < size; i++) {
+    for(let j = 0; j < size; j++) {
+      if(blocksMatrix[i][j].id === blockId) {
+        return [i, j]
+      }
+    }
+  }
 }
 
 let getRandomIndex = () => Math.floor(Math.random() * 100)
@@ -43,59 +57,42 @@ export default function Minesweeper() {
   const numberOfMoves = useRef(0)
   const isGameOver = useRef(false)
 
-  const firstClick = (x, y, mutableBlocksMatrix) => {
-    let dir = [[0, -1], [-1, 0], [1, 0], [0, 1], [1, 1], [-1, 1], [1, -1], [-1, -1]]
-
-    let queue = [[x, y]]
-    let randomNumber = getRandomIndex() % Math.floor(size*size/2)
-
-    while(queue.length > 0) {
-      if(randomNumber === 0) break
-      let [i, j] = queue.shift()
-      mutableBlocksMatrix[i][j].isClicked = true
-      randomNumber--
-      for(let d of dir) {
-        let newI = i + d[0]
-        let newJ = j + d[1]
-        if(newI >= 0 && newI < size && newJ >= 0 && newJ < size) {
-          queue.push([newI, newJ])
-        }
-      }
-    }
-    setBlocksMatrix([...mutableBlocksMatrix])
-  }
-
   const blockClick = (blockId) => {
-    console.log(isGameOver.current)
-    if(isGameOver.current) return
-
-    let x = 0, y = 0
-    let mutableBlocksMatrix = [...blocksMatrix]
-
-    for(let i = 0; i < size; i++) {
-      for(let j = 0; j < size; j++) {
-        if(mutableBlocksMatrix[i][j].id === blockId) {
-          x = i
-          y = j
-          break
-        }
-      }
-    }
-
+    const [x, y] = getCoordinates(blockId, blocksMatrix)
+    if(isGameOver.current || blocksMatrix[x][y].isClicked) return
     if(blocksMatrix[x][y].isBomb) {
       isGameOver.current = true
-    }
-
-    if(!numberOfMoves.current) {
-      firstClick(x, y, mutableBlocksMatrix)
-      numberOfMoves.current++
       return
     }
 
-    if(!mutableBlocksMatrix[x][y].isClicked) {
-      mutableBlocksMatrix[x][y].isClicked = true
-      setBlocksMatrix(mutableBlocksMatrix)
-      numberOfMoves.current++
+    const mutableBlocksMatrix = [...blocksMatrix]
+    mutableBlocksMatrix[x][y].isClicked = true
+
+    if(!numberOfMoves.current) {
+      for(let [i, j] of DIRECTIONS) {
+        let newI = x+i, newJ = x+j
+        if(isValidCoordinate(newI, newJ, size) && !mutableBlocksMatrix[newI][newJ].isBomb) {
+          mutableBlocksMatrix[newI][newJ].isClicked = true
+          if(mutableBlocksMatrix[newI][newJ].bombsAround === 0)
+            dfs(newI, newJ, mutableBlocksMatrix)
+        }
+      }
+    }
+
+    setBlocksMatrix(mutableBlocksMatrix)
+    numberOfMoves.current++
+  }
+
+  let vis = Array(size).fill(null).map(() => Array(size).fill(false))
+  const dfs = (i, j, mutableBlocksMatrix) => {
+    if(mutableBlocksMatrix[i][j].bombsAround !== 0 || vis[i][j]) return
+    vis[i][j] = true
+    for(let [x, y] of DIRECTIONS) {
+      let newI = x+i, newJ = y+j
+      if(isValidCoordinate(newI, newJ, mutableBlocksMatrix.length)) {
+        mutableBlocksMatrix[newI][newJ].isClicked = true
+        dfs(newI, newJ, mutableBlocksMatrix)
+      }
     }
   }
 
@@ -135,11 +132,12 @@ const Block = ({block, blockClick}) => {
 
   let colors = ["bg-green-400", "bg-pink-400", "bg-blue-400", "bg-red-400", "bg-purple-400"]
 
-  return <div onClick={handleClick} className={`h-8 w-8 p-0.5 tablet:h-10 tablet:w-10 
-    flex justify-center items-center font-bold ${colors[id % 5]}`}>
+  return <div onClick={handleClick} className={`h-8 w-8 tablet:h-10 tablet:w-10 
+    flex justify-center items-center font-bold ${bombsAround === 0 && isClicked ? "bg-zinc-400" : colors[id % 5]}`}>
     {
-      isClicked && (isBomb ?
-        <Image src='/bomb.png' height={40} width={40} alt="bomb image"/> : bombsAround)
+      isClicked ? (isBomb ?
+        <Image src='/bomb.png' height={32} width={32} alt="bomb image"/> : bombsAround !== 0 && bombsAround) :
+        <div className="bg-zinc-300 h-full w-full"></div>
     }
   </div>
 }
