@@ -55,7 +55,6 @@ export default function Minesweeper() {
   const [blocksMatrix, setBlocksMatrix] = useState(() => getBoard(size))
   const numberOfMoves = useRef(0)
   const [isGameOver, setIsGameOver] = useState(false)
-  console.log(blocksMatrix)
 
   const blockClick = (blockId) => {
     const [x, y] = getCoordinates(blockId, blocksMatrix)
