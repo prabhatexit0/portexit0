@@ -106,7 +106,7 @@ export default function Minesweeper() {
   }
 
   return <div className="w-full">
-    <h1 className="text-2xl font-bold">Colorful Minesweeper</h1>
+    <h1 className="text-2xl font-bold">Minesweeper</h1>
     <p className="text-sm">under construction!</p>
     <div className="w-full flex justify-center mt-2 mb-2 relative">
       <div className="flex flex-col gap-1 tablet:gap-1.5 w-max">
@@ -142,10 +142,11 @@ const Block = ({block, blockClick}) => {
     blockClick(id)
   }
 
-  let colors = ["bg-green-400", "bg-pink-400", "bg-blue-400", "bg-red-400", "bg-purple-400"]
+  let colors = ["bg-blue-500", "bg-emerald-500", "bg-purple-500", "bg-rose-500", "bg-red-500"]
 
   return <div onClick={handleClick} className={`h-8 w-8 tablet:h-10 tablet:w-10 
-    flex justify-center items-center font-bold ${bombsAround === 0 && isClicked ? "bg-zinc-400" : colors[id % 5]}`}>
+    flex justify-center items-center font-bold 
+    ${bombsAround === 0 && isClicked ? "bg-zinc-400" : colors[bombsAround-1 % colors.length]}`}>
     {
       isClicked ? (isBomb ?
         <Image src='/bomb.png' height={32} width={32} alt="bomb image"/> : bombsAround !== 0 && bombsAround) :
