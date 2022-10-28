@@ -1,4 +1,4 @@
-import {useState, useRef} from "react";
+import { useState, useRef } from "react";
 import Image from 'next/image'
 
 const Directions = [[0, -1], [-1, 0], [1, 0], [0, 1], [1, 1], [-1, 1], [1, -1], [-1, -1]]
@@ -112,9 +112,9 @@ export default function Minesweeper() {
       <div className="flex flex-col gap-1 tablet:gap-1.5 w-max">
         {
           blocksMatrix.map((blocksRow, idx) =>
-            <div className="flex gap-1 tablet:gap-1.5" key={idx}>
-              {blocksRow.map(block =>
-                <Block block={block} blockClick={blockClick} key={block.id}/>)}
+            <div className="flex gap-1 tablet:gap-1.5" key={ idx }>
+              { blocksRow.map(block =>
+                <Block block={ block } blockClick={ blockClick } key={ block.id }/>) }
             </div>
           )
         }
@@ -130,7 +130,7 @@ export default function Minesweeper() {
       }
     </div>
     <div className="flex justify-end font-bold">
-      <button onClick={resetBoard} className="bg-red-500 p-1">Reset Board</button>
+      <button onClick={ resetBoard } className="bg-red-500 p-1">Reset Board</button>
     </div>
   </div>
 }
@@ -144,12 +144,12 @@ const Block = ({block, blockClick}) => {
 
   let colors = ["bg-blue-500", "bg-emerald-500", "bg-purple-500", "bg-rose-500", "bg-red-500"]
 
-  return <div onClick={handleClick} className={`h-8 w-8 tablet:h-10 tablet:w-10 
+  return <div onClick={ handleClick } className={ `h-8 w-8 tablet:h-10 tablet:w-10 
     flex justify-center items-center font-bold 
-    ${bombsAround === 0 && isClicked ? "bg-zinc-400" : colors[bombsAround - 1 % colors.length]}`}>
+    ${ bombsAround === 0 && isClicked ? "bg-zinc-400" : colors[(bombsAround - 1) % colors.length] }` }>
     {
       isClicked ? (isBomb ?
-          <Image src='/bomb.png' height={32} width={32} alt="bomb image"/> : bombsAround !== 0 && bombsAround) :
+          <Image src='/bomb.png' height={ 32 } width={ 32 } alt="bomb image"/> : bombsAround !== 0 && bombsAround) :
         <div className="bg-zinc-300 h-full w-full"></div>
     }
   </div>
