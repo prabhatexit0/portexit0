@@ -70,7 +70,7 @@ export default function Minesweeper() {
 
     if(!numberOfMoves.current) {
       for(let [i, j] of DIRECTIONS) {
-        let newI = x+i, newJ = x+j
+        let newI = x+i, newJ = y+j
         if(isValidCoordinate(newI, newJ, size) && !mutableBlocksMatrix[newI][newJ].isBomb) {
           mutableBlocksMatrix[newI][newJ].isClicked = true
           if(mutableBlocksMatrix[newI][newJ].bombsAround === 0)
