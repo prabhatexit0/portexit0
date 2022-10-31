@@ -142,11 +142,11 @@ const Block = ({block, blockClick}) => {
     blockClick(id)
   }
 
-  let colors = ["bg-blue-500", "bg-emerald-500", "bg-purple-500", "bg-rose-500", "bg-red-500"]
+  let colors = ["bg-red-500", "bg-blue-500", "bg-emerald-500", "bg-purple-500", "bg-rose-500"]
 
   return <div onClick={ handleClick } className={ `h-8 w-8 tablet:h-10 tablet:w-10 
     flex justify-center items-center font-bold 
-    ${ bombsAround === 0 && isClicked ? "bg-zinc-400" : colors[(bombsAround - 1) % colors.length] }` }>
+    ${ bombsAround === 0 && isClicked ? "bg-zinc-400" : colors[bombsAround % colors.length] }` }>
     {
       isClicked ? (isBomb ?
           <Image src='/bomb.png' height={ 32 } width={ 32 } alt="bomb image"/> : bombsAround !== 0 && bombsAround) :
