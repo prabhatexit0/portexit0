@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { useMinesweeper, GAME_STATE } from "./minesweeperLogic";
 
 export default function Minesweeper() {
-  let { board, blockClick, resetBoard, gameState } = useMinesweeper(8, 8)
+  let {board, blockClick, resetBoard, gameState} = useMinesweeper(8, 8)
 
   return <div className="w-full">
     <h1 className="text-2xl font-bold">Minesweeper</h1>

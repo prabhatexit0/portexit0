@@ -1,30 +1,37 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react"
 
 const Directions = [[0, -1], [-1, 0], [1, 0], [0, 1], [1, 1], [-1, 1], [1, -1], [-1, -1]]
-let getRandomIndex = () => Math.floor(Math.random() * 100)
+let getRandomInteger = () => Math.floor(Math.random() * 100)
 
 export const GAME_STATE = Object.freeze({
-  NOT_STARTED: 0,
-  ONGOING: 1,
-  GAME_OVER: 2
+  NOT_STARTED: 0, ONGOING: 1, GAME_OVER: 2
 })
 
-const getBoard = (m, n) => {
+const getBoard = (rows, columns) => {
   const getBlock = (function blockMaker() {
     let blockId = 0
     return function block(isBomb, isClicked, bombsAround) {
       return {
-        isBomb: isBomb,
-        isClicked: isClicked,
-        bombsAround: bombsAround,
-        id: ++blockId
+        isBomb: isBomb, isClicked: isClicked, bombsAround: bombsAround, id: ++blockId
       }
     }
   })()
 
-  const board = Array(m).fill(null)
-    .map(() => Array(n).fill(null)
-      .map(() => getBlock(getRandomIndex() % 5 === 0, false, 0)))
+  return Array(rows).fill(null)
+    .map(() => Array(columns).fill(null)
+      .map(() => getBlock(false, false, 0)))
+}
+
+const isValidCoordinate = (i, j, board) => i >= 0 && i < board.length && j >= 0 && j < board[0].length
+
+const addBombsAndMark = (mutableBoard) => {
+  let m = mutableBoard.length, n = mutableBoard[0].length
+
+  for (let i = 0; i < mutableBoard.length; i++) {
+    for (let j = 0; j < mutableBoard[0].length; j++) {
+      mutableBoard[i][j].isBomb = getRandomInteger() % 5 == 0
+    }
+  }
 
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
@@ -32,81 +39,85 @@ const getBoard = (m, n) => {
       for (let d of Directions) {
         let newI = i + d[0], newJ = j + d[1]
         if (newI < m && newI >= 0 && newJ >= 0 && newJ < n) {
-          if (board[newI][newJ].isBomb) bombCount++
+          if (mutableBoard[newI][newJ].isBomb) bombCount++
         }
       }
-      board[i][j].bombsAround = bombCount
+      mutableBoard[i][j].bombsAround = bombCount
     }
   }
 
-  return board
+  return mutableBoard
 }
 
-
-export const useMinesweeper = (m, n) => {
-  const [board, setBoard] = useState(() => getBoard(m, n))
-  const numberOfMoves = useRef(0)
-  const [gameState, setGameState] = useState(GAME_STATE.NOT_STARTED)
-
-  const isValidCoordinate = (i, j) => i >= 0 && i < m && j >= 0 && j < n
-
-  const getCoordinates = (blockId, blocksMatrix=board) => {
-    for (let i = 0; i < m; i++) {
-      for (let j = 0; j < n; j++) {
-        if (blocksMatrix[i][j].id === blockId) {
-          return [i, j]
-        }
+const getCoordinates = (blockId, board) => {
+  let rows = board.length, columns = board[0].length
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < columns; j++) {
+      if (board[i][j].id === blockId) {
+        return [i, j]
       }
     }
   }
+  return [-1, -1]
+}
 
-  const blockClick = (blockId) => {
-    const [x, y] = getCoordinates(blockId)
-    if (gameState === GAME_STATE.GAME_OVER || board[x][y].isClicked) return
+const createRevealAroundZero = (mutableBoard) => {
+  let rows = mutableBoard.length, columns = mutableBoard[0].length
+  let vis = Array(rows).fill(null).map(() => Array(columns).fill(false))
 
-    const mutableBoard = [...board]
-    mutableBoard[x][y].isClicked = true
-
-    if (board[x][y].isBomb) {
-      setGameState(GAME_STATE.GAME_OVER)
-    }
-
-    if (!numberOfMoves.current) {
-      for (let [i, j] of Directions) {
-        let newI = x + i, newJ = y + j
-        if (isValidCoordinate(newI, newJ) && !mutableBoard[newI][newJ].isBomb) {
-          mutableBoard[newI][newJ].isClicked = true
-          if (mutableBoard[newI][newJ].bombsAround === 0)
-            dfs(newI, newJ, mutableBoard)
-        }
-      }
-    }
-
-    if (mutableBoard[x][y].bombsAround === 0)
-      dfs(x, y, mutableBoard)
-
-    setBoard(mutableBoard)
-    numberOfMoves.current++
-  }
-
-  let vis = Array(m).fill(null).map(() => Array(n).fill(false))
-  const dfs = (i, j, mutableBoard) => {
+  return function dfs(i, j) {
     if (mutableBoard[i][j].bombsAround !== 0 || vis[i][j]) return
     vis[i][j] = true
     for (let [x, y] of Directions) {
       let newI = x + i, newJ = y + j
-      if (isValidCoordinate(newI, newJ, mutableBoard.length)) {
+      if (isValidCoordinate(newI, newJ, mutableBoard)) {
         mutableBoard[newI][newJ].isClicked = true
         dfs(newI, newJ, mutableBoard)
       }
     }
   }
+}
+
+export const useMinesweeper = (rows, columns) => {
+  const [board, setBoard] = useState(() => getBoard(rows, columns))
+  const numberOfMoves = useRef(0)
+  const gameState = useRef(GAME_STATE.NOT_STARTED)
+
+
+  const blockClick = (blockId) => {
+    const [x, y] = getCoordinates(blockId, board)
+    if (gameState.current === GAME_STATE.GAME_OVER || board[x][y].isClicked) return
+
+    let mutableBoard = [...board]
+    mutableBoard[x][y].isClicked = true
+    const revealAroundZero = createRevealAroundZero(mutableBoard)
+
+    if (board[x][y].isBomb) {
+      gameState.current = GAME_STATE.GAME_OVER
+    }
+
+    if (gameState.current == GAME_STATE.NOT_STARTED) {
+      mutableBoard = addBombsAndMark(mutableBoard)
+      for (let [i, j] of Directions) {
+        let newI = x + i, newJ = y + j
+        if (isValidCoordinate(newI, newJ, mutableBoard) && !mutableBoard[newI][newJ].isBomb) {
+          mutableBoard[newI][newJ].isClicked = true
+          if (mutableBoard[newI][newJ].bombsAround === 0) revealAroundZero(newI, newJ)
+        }
+      }
+    }
+
+    if (mutableBoard[x][y].bombsAround === 0) revealAroundZero(x, y)
+
+    setBoard(mutableBoard)
+    numberOfMoves.current++
+  }
 
   const resetBoard = () => {
-    setGameState(GAME_STATE.NOT_STARTED)
-    setBoard(getBoard(m, n))
+    gameState.current = GAME_STATE.NOT_STARTED
+    setBoard(getBoard(rows, columns))
     numberOfMoves.current = 0
   }
 
-  return { board, blockClick, resetBoard, gameState }
+  return {board, blockClick, resetBoard, gameState: gameState.current}
 }
