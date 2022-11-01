@@ -1,13 +1,13 @@
 import Image from 'next/image'
-import { useMinesweeper } from "./minesweeperLogic";
+import { useMinesweeper, GAME_STATE } from "./minesweeperLogic";
 
 export default function Minesweeper() {
-  let { board, blockClick, resetBoard, isGameOver } = useMinesweeper(8, 8)
+  let { board, blockClick, resetBoard, gameState } = useMinesweeper(8, 8)
 
   return <div className="w-full">
     <h1 className="text-2xl font-bold">Minesweeper</h1>
     <p className="text-sm">under construction!</p>
-    <div className="flex justify-center p-1 mt-2 mb-2 overflow-scroll">
+    <div className="flex justify-center p-1 mt-2 mb-2 relative">
       <div className="flex flex-col gap-1 tablet:gap-1.5 w-max">
         {
           board.map((blocksRow, idx) =>
@@ -19,7 +19,7 @@ export default function Minesweeper() {
         }
       </div>
       {
-        isGameOver &&
+        gameState === GAME_STATE.GAME_OVER &&
         <div className="w-full h-full absolute flex
           justify-center items-center z-10">
           <div className="bg-red-800 text-xl font-bold p-2 shadow-xl animate-bounce">

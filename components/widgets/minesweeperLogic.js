@@ -3,6 +3,12 @@ import { useState, useRef } from "react";
 const Directions = [[0, -1], [-1, 0], [1, 0], [0, 1], [1, 1], [-1, 1], [1, -1], [-1, -1]]
 let getRandomIndex = () => Math.floor(Math.random() * 100)
 
+export const GAME_STATE = Object.freeze({
+  NOT_STARTED: 0,
+  ONGOING: 1,
+  GAME_OVER: 2
+})
+
 const getBoard = (m, n) => {
   const getBlock = (function blockMaker() {
     let blockId = 0
@@ -36,14 +42,13 @@ const getBoard = (m, n) => {
   return board
 }
 
+
 export const useMinesweeper = (m, n) => {
   const [board, setBoard] = useState(() => getBoard(m, n))
   const numberOfMoves = useRef(0)
-  const [isGameOver, setIsGameOver] = useState(false)
+  const [gameState, setGameState] = useState(GAME_STATE.NOT_STARTED)
 
-  const isValidCoordinate = (i, j) => {
-    return i >= 0 && i < m && j >= 0 && j < n
-  }
+  const isValidCoordinate = (i, j) => i >= 0 && i < m && j >= 0 && j < n
 
   const getCoordinates = (blockId, blocksMatrix=board) => {
     for (let i = 0; i < m; i++) {
@@ -57,13 +62,13 @@ export const useMinesweeper = (m, n) => {
 
   const blockClick = (blockId) => {
     const [x, y] = getCoordinates(blockId)
-    if (isGameOver || board[x][y].isClicked) return
+    if (gameState === GAME_STATE.GAME_OVER || board[x][y].isClicked) return
 
     const mutableBoard = [...board]
     mutableBoard[x][y].isClicked = true
 
     if (board[x][y].isBomb) {
-      setIsGameOver(true)
+      setGameState(GAME_STATE.GAME_OVER)
     }
 
     if (!numberOfMoves.current) {
@@ -98,11 +103,10 @@ export const useMinesweeper = (m, n) => {
   }
 
   const resetBoard = () => {
-    setIsGameOver(false)
+    setGameState(GAME_STATE.NOT_STARTED)
     setBoard(getBoard(m, n))
     numberOfMoves.current = 0
   }
 
-  return { board, blockClick, resetBoard, isGameOver }
+  return { board, blockClick, resetBoard, gameState }
 }
-
