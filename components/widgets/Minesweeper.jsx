@@ -3,10 +3,11 @@ import { useMinesweeper, GAME_STATE } from "./minesweeperLogic";
 
 export default function Minesweeper() {
   let {board, blockClick, resetBoard, gameState} = useMinesweeper(8, 8)
+  let gameStatus = ["Tap any block to start!", "Game Started", "Game Over"]
 
   return <div className="w-full">
     <h1 className="text-2xl font-bold">Minesweeper</h1>
-    <p className="text-sm">under construction!</p>
+    <p className="text-sm">{gameStatus[gameState]}</p>
     <div className="flex justify-center p-1 mt-2 mb-2 relative">
       <div className="flex flex-col gap-1 tablet:gap-1.5 w-max">
         {

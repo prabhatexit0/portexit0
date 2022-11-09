@@ -10,7 +10,7 @@ export default function Layout({ children }) {
       <Navbar />
         {
           children && children.map((child, idx) =>
-            <ChildWrapper key={idx} bg={"border-2 border-zinc-800"}>{child}</ChildWrapper>
+            <ChildWrapper key={idx} bg={`border-2 border-zinc-800`}>{child}</ChildWrapper>
           )
         }
     </LayoutContainer>

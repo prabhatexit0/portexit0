@@ -1,7 +1,7 @@
 import { useState } from "react"
 import ReactCodeMirror, { basicSetup } from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
-import { dracula } from "@uiw/codemirror-themes-all";
+import { xcodeDark } from "@uiw/codemirror-themes-all";
 import { vim } from '@replit/codemirror-vim'
 
 const URL = `https://rocky-dawn-53721.herokuapp.com/run`
@@ -9,7 +9,7 @@ const URL = `https://rocky-dawn-53721.herokuapp.com/run`
 export default function Executor() {
   const [result, setResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [codeString, setCodeString] = useState("// Work in progress, might not work!")
+  const [codeString, setCodeString] = useState("")
   const [isVim, setIsVim] = useState(false)
   const [codeExtensions, setCodeExtensions] = useState([
     javascript(),
@@ -56,12 +56,12 @@ export default function Executor() {
       <ReactCodeMirror
         value={ codeString }
         onChange={ value => setCodeString(value) }
-        className="text-black max-h-40 overflow-auto"
+        className="text-black max-h-92 overflow-auto"
         options={ {
           mode: "js",
         } }
-        theme={ dracula }
-        height="200px"
+        theme={ xcodeDark }
+        height="250px"
         extensions={ codeExtensions }
       />
       <button onClick={ handleFileCreation } className="p-1 px-2 font-bold w-max bg-[#295]

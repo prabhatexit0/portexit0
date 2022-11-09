@@ -32,14 +32,13 @@ export const getStaticProps = async () => {
   }
 }
 
-// noinspection JSUnusedGlobalSymbols
 export default function Home({ data }){
   return (
     <Layout heading={"Prabhat Sachdeva"}>
       <About />
-      <Executor />
       <Leetcode data={data}/>
       <Minesweeper/>
+      <Executor />
     </Layout >
   );
 }
