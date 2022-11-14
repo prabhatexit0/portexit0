@@ -7,7 +7,6 @@ import { vim } from '@replit/codemirror-vim'
 const URL = process.env.BACKEND_API
 
 export default function Executor() {
-  console.log("URL URL", URL)
   const [result, setResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [codeString, setCodeString] = useState("")
