@@ -4,9 +4,10 @@ import { javascript } from "@codemirror/lang-javascript";
 import { xcodeDark } from "@uiw/codemirror-themes-all";
 import { vim } from '@replit/codemirror-vim'
 
-const URL = `https://rocky-dawn-53721.herokuapp.com/run`
+const URL = process.env.BACKEND_API
 
 export default function Executor() {
+  console.log("URL URL", URL)
   const [result, setResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [codeString, setCodeString] = useState("")

@@ -50,7 +50,7 @@ const Block = ({block, blockClick}) => {
     {
       isClicked ? (isBomb ?
           <Image src='/bomb.png' height={ 32 } width={ 32 } alt="bomb image"/> : bombsAround !== 0 && bombsAround) :
-        <div className="bg-zinc-300 h-full w-full"></div>
+        <div className="bg-gray-200 h-full w-full"></div>
     }
   </div>
 }

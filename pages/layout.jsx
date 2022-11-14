@@ -23,4 +23,4 @@ const LayoutContainer = ({ children }) =>
     {children}
   </div>
 
-const ChildWrapper = ({ children, bg }) => <><div className={`p-4 m-2 mb-0 ${bg} w-[90%] laptop:w-5/12`}>{children}</div></>
+const ChildWrapper = ({ children, bg }) => <><div className={`p-4 m-2 mb-0 ${bg} w-[90%] laptop:w-1/2`}>{children}</div></>

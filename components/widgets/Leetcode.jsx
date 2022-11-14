@@ -19,7 +19,7 @@ export default function Leetcode({ data }) {
   })
 
   return <LeetcodeContainer>
-    <h1 className="text-2xl font-bold text-white">Leetcode</h1>
+    <h1 className="text-2xl font-bold text-white">LeetCode</h1>
       <div className="flex justify-between tablet:justify-evenly items-center w-full mt-2">
         <div className="flex flex-col items-center">
           <h1 className="text-4xl font-bold">{all?.count ?? NOT_AVAILABLE}</h1>
