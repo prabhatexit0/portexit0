@@ -4,7 +4,7 @@ import { javascript } from "@codemirror/lang-javascript";
 import { xcodeDark } from "@uiw/codemirror-themes-all";
 import { vim } from '@replit/codemirror-vim'
 
-const URL = process.env.BACKEND_API
+const URL = process.env.NEXT_PUBLIC_BACKEND_API
 
 export default function Executor() {
   const [result, setResult] = useState("")

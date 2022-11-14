@@ -1,4 +1,4 @@
-const RESUME_LINK = process.env.RESUME_LINK
+const RESUME_LINK = process.env.NEXT_PUBLIC_RESUME_LINK
 
 export default function About() {
   let dateUpdatedOn = "November 15, 2022"
