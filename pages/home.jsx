@@ -1,7 +1,7 @@
 import Layout from "./layout";
-import { About, Executor, Leetcode } from '../components/widgets/'
+import { Introduction, Leetcode } from '../components/widgets/'
 import { GraphQLClient, gql } from "graphql-request";
-import {Minesweeper} from "../components/widgets";
+import About from '../components/widgets/About'
 
 export const getStaticProps = async () => {
   const endpoint = 'https://leetcode.com/graphql'
@@ -35,10 +35,9 @@ export const getStaticProps = async () => {
 export default function Home({ data }){
   return (
     <Layout heading={"Prabhat Sachdeva"}>
-      <About />
+      <Introduction />
       <Leetcode data={data}/>
-      <Minesweeper/>
-      <Executor />
+      <About/>
     </Layout >
   );
 }

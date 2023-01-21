@@ -19,14 +19,14 @@ export default function Leetcode({ data }) {
   })
 
   return <LeetcodeContainer>
-    <h1 className="text-2xl font-bold text-white">LeetCode</h1>
+    <h1 className="text-2xl font-bold text-white text-gray-300">LeetCode</h1>
       <div className="flex justify-between tablet:justify-evenly items-center w-full mt-2">
         <div className="flex flex-col items-center">
           <h1 className="text-4xl font-bold">{all?.count ?? NOT_AVAILABLE}</h1>
           <p className="text-lg">solved</p>
         </div>
 
-        <div className="w-32 flex flex-col">
+        <div className="w-32 flex flex-col ">
           {
             problemCountObjects?.map((ele, idx) => <SmallContainer key={idx} textColor={ele.color}>
               <p className="text-white">{ele?.difficulty}</p>
@@ -45,7 +45,7 @@ export default function Leetcode({ data }) {
 }
 
 const LeetcodeContainer = ({ children }) =>
-  <div className="font-mono flex text-sm flex-col relative">{children}</div>
+  <div className="font-mono flex text-sm flex-col relative text-gray-300">{children}</div>
 
 const SmallContainer = ({children, textColor}) =>
   <div className={`flex w-full justify-between items-center ${textColor}`}>{children}</div>

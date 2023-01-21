@@ -10,7 +10,7 @@ export default function Layout({ children }) {
       <Navbar />
         {
           children && children.map((child, idx) =>
-            <ChildWrapper key={idx} bg={`border-2 border-zinc-800`}>{child}</ChildWrapper>
+            <ChildWrapper key={idx} bg={`bg-zinc-500/5`}>{child}</ChildWrapper>
           )
         }
     </LayoutContainer>
@@ -19,8 +19,8 @@ export default function Layout({ children }) {
 
 const LayoutContainer = ({ children }) =>
   <div className="font-mono relative pb-10
-    flex flex-col items-center">
+    flex flex-col items-center ">
     {children}
   </div>
 
-const ChildWrapper = ({ children, bg }) => <><div className={`p-4 m-2 mb-0 ${bg} w-[90%] laptop:w-1/2`}>{children}</div></>
+const ChildWrapper = ({ children, bg }) => <><div className={`p-7 m-2 mb-0 ${bg} w-[90%] laptop:w-1/2`}>{children}</div></>
