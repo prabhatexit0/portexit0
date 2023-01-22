@@ -6,7 +6,7 @@ export default function Introduction() {
       <h1 className="text-2xl font-bold text-white font-mono text-gray-300">Prabhat Sachdeva</h1>
       <p>Final year undergraduate student with expertise in JavaScript, TypeScript, React.js and related frameworks.
         I have experience in solving LeetCode problems and have an interest in WebAssembly and Compiler Design.
-        For more information, please refer to my <a target="_blank" className="font-bold cursor-pointer border-[1px] px-1 border-gray-700 rounded-md hover:bg-gray-900" href={RESUME_LINK}>resume</a>.</p>
+        For more information, please refer to my <a target="_blank" className="font-bold cursor-pointer border-[1px] px-1 border-gray-700 rounded-md hover:bg-gray-900" href={RESUME_LINK} rel="noreferrer">resume</a>.</p>
     </AboutContainer>
   )
 }
