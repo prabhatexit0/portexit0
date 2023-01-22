@@ -2,7 +2,7 @@ import {AiFillGithub, AiFillLinkedin, AiOutlineTwitter, AiFillMail } from "react
 import { SiLeetcode } from "react-icons/si";
 
 export default function Navbar() {
-  return <div className='font-mono p-5 w-full sticky bg-[#15152e]/90
+  return <div className='font-mono p-5 w-full sticky bg-transparent backdrop-blur-sm
     fixed top-0 z-10 laptop:px-20'>
     <div className='flex gap-5 justify-between items-center'>
       <h1 className="font-bold text-xl">prabhatexit0</h1>

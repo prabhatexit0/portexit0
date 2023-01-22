@@ -37,8 +37,8 @@ export default function Leetcode({ data }) {
     </div>
 
     <a href="https://leetcode.com/prabhatexit0" rel="noreferrer" target="_blank"
-      className="bg-yellow-500 hover:bg-green-500 text-black font-bold w-max p-1
-      absolute top-0 right-0 cursor-pointer select-none">
+      className="font-bold border-[1px] px-1 border-gray-700 rounded-md hover:bg-gray-900 px-1 py-0.5
+      absolute top-0 right-0 cursor-pointer select-none text-md">
       prabhatexit0
     </a>
   </LeetcodeContainer>

@@ -19,8 +19,8 @@ export default function Layout({ children }) {
 
 const LayoutContainer = ({ children }) =>
   <div className="font-mono relative pb-10
-    flex flex-col items-center ">
+    flex flex-col items-center gap-2">
     {children}
   </div>
 
-const ChildWrapper = ({ children, bg }) => <><div className={`p-7 m-2 mb-0 ${bg} w-[90%] laptop:w-1/2`}>{children}</div></>
+const ChildWrapper = ({ children, bg }) => <><div className={`p-7 m-2 mb-0 ${bg} w-[90%] laptop:w-1/2 rounded-xl backdrop-blur-sm`}>{children}</div></>
