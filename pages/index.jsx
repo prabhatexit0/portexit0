@@ -1,11 +1,11 @@
-import Head from "next/head";
-import Layout from "./layout";
-import { Introduction, Leetcode } from '../components/widgets/'
-import { GraphQLClient, gql } from "graphql-request";
-import About from '../components/widgets/About'
+import Head from "next/head"
+import Layout from "./layout"
+import { Introduction, Leetcode, Minesweeper } from "../components/widgets/"
+import { GraphQLClient, gql } from "graphql-request"
+import About from "../components/widgets/About"
 
 export const getStaticProps = async () => {
-  const endpoint = 'https://leetcode.com/graphql'
+  const endpoint = "https://leetcode.com/graphql"
   const graphQLClient = new GraphQLClient(endpoint)
 
   const query = gql`
@@ -28,26 +28,25 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      data
-    }
+      data,
+    },
   }
 }
 
-export default function Home({ data }){
+export default function Home({ data }) {
   return (
     <div>
       <Head>
         <title>Prabhat Sachdeva</title>
-        <meta name="description" content="its my portfolio website"/>
-        <link rel="icon" href="/favicon.ico"/>
+        <meta name="description" content="its my portfolio website" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout heading={"Prabhat Sachdeva"}>
         <Introduction />
-        <Leetcode data={data}/>
-        <About/>
-      </Layout >
+        <Leetcode data={data} />
+        <Minesweeper />
+        <About />
+      </Layout>
     </div>
-
-  );
+  )
 }
-

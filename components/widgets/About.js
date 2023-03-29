@@ -1,3 +1,5 @@
+import { useCallback, useState } from "react"
+
 function About() {
   const para = `My journey with programming began after entering college. Before that I was heavily involved in graphic design, video editing for gaming content creators. That all changed when I started studying C in college. I quickly fell in love with programming and a lot of credit goes to my teacher for sparking my interest.
 
@@ -23,11 +25,16 @@ However, the experience exposed me to the world of compilers and I'm currently l
 
 // Will add more into it soon but these days I’m mostly working with TypeScript, learning more about TypeScript and LOVING IT thanks to this twitch streamer purplelf :) also planning to create some fun projects as soon as I’m done with exams.
 `
+  const [isFull, setIsFull] = useState(false)
+
+  const handleIsFull = useCallback(() => { setIsFull(p => !p) }, [])
+  
   return <div className="flex flex-col gap-5">
     <h1 className="font-bold text-2xl text-gray-300">Me & Programming</h1>
-    <div className="flex flex-col gap-3 text-gray-400">
+    <div className={`flex flex-col gap-3 text-gray-400 ${!isFull && "h-[30rem]"} overflow-hidden`}>
       {para.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}
     </div>
+    <button className="font-bold" onClick={handleIsFull}>{!isFull ? "More" : "Less"}</button>
   </div>
 }
 
