@@ -10,7 +10,7 @@ export default function Layout({ children }) {
       <Navbar />
       {children &&
         children.map((child, idx) => (
-          <ChildWrapper key={idx} bg={`bg-zinc-500/5`}>
+          <ChildWrapper key={idx}>
             {child}
           </ChildWrapper>
         ))}
@@ -27,9 +27,9 @@ const LayoutContainer = ({ children }) => (
   </div>
 )
 
-const ChildWrapper = ({ children, bg }) => (
+const ChildWrapper = ({ children }) => (
   <>
-    <div className={`p-7 m-2 mb-0 ${bg} w-[90%] laptop:w-1/2 rounded-md`}>
+    <div className={`p-5 m-2 mb-0 w-[90%] laptop:w-1/2`}>
       {children}
     </div>
   </>

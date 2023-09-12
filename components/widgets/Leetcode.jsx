@@ -10,7 +10,7 @@ function getQuestionsData(data) {
 
 export default function Leetcode({ data }) {
   const [all, easy, medium, hard] = getQuestionsData(data) ?? []
-  const difficultyColor = ["text-green-400", "text-yellow-400", "text-red-400"]
+  const difficultyColor = ["text-green", "text-yellow", "text-red-300"]
   const NOT_AVAILABLE = "N/A"
 
   let problemCountObjects = [easy, medium, hard].map((x, idx) => {
@@ -19,11 +19,11 @@ export default function Leetcode({ data }) {
   })
 
   return <LeetcodeContainer>
-    <h1 className="text-2xl font-bold text-white text-gray-300">LeetCode</h1>
+    <h1 className="text-2xl font-bold text-pink">LeetCode</h1>
       <div className="flex justify-between tablet:justify-evenly items-center w-full mt-2">
         <div className="flex flex-col items-center">
-          <h1 className="text-4xl font-bold">{all?.count ?? NOT_AVAILABLE}</h1>
-          <p className="text-lg">solved</p>
+          <h1 className="text-4xl font-bold text-purple">{all?.count ?? NOT_AVAILABLE}</h1>
+          <p className="text-lg text-purple">solved</p>
         </div>
 
         <div className="w-32 flex flex-col ">
@@ -37,8 +37,8 @@ export default function Leetcode({ data }) {
     </div>
 
     <a href="https://leetcode.com/prabhatexit0" rel="noreferrer" target="_blank"
-      className="font-bold border-[1px] px-1 border-gray-700 rounded-md hover:bg-gray-900 px-1 py-0.5
-      absolute top-0 right-0 cursor-pointer select-none text-md">
+      className="font-bold border-[1px] px-1 rounded-md hover:bg-darklight px-1 py-0.5
+      absolute top-0 right-0 cursor-pointer select-none text-md text-green border-green">
       prabhatexit0
     </a>
   </LeetcodeContainer>

@@ -1,8 +1,7 @@
 import Head from "next/head"
 import Layout from "./layout"
-import { Introduction, Leetcode, Minesweeper } from "../components/widgets/"
+import { Introduction, Leetcode, Gsoc, Projects } from "../components/widgets/"
 import { GraphQLClient, gql } from "graphql-request"
-import About from "../components/widgets/About"
 
 export const getStaticProps = async () => {
   const endpoint = "https://leetcode.com/graphql"
@@ -43,9 +42,9 @@ export default function Home({ data }) {
       </Head>
       <Layout heading={"Prabhat Sachdeva"}>
         <Introduction />
+        <Gsoc/>
+        <Projects/>
         <Leetcode data={data} />
-        <Minesweeper />
-        <About />
       </Layout>
     </div>
   )

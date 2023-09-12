@@ -5,7 +5,7 @@ export default function Navbar() {
   return <div className='font-mono p-5 w-full sticky bg-transparent backdrop-blur-sm
     fixed top-0 z-10 laptop:px-20'>
     <div className='flex gap-5 justify-between items-center'>
-      <h1 className="font-bold text-xl">prabhatexit0</h1>
+      <h1 className="font-bold text-xl text-purple">prabhatexit0</h1>
       <div className="flex gap-5">
         <IconLinkWrap link="https://github.com/prabhatexit0">
           <AiFillGithub size={20}/>
@@ -29,4 +29,4 @@ export default function Navbar() {
 }
 
 const IconLinkWrap = ({children, link}) =>
-  <a className="hover:text-yellow-400" href={link} target="blank" rel="noreferrer">{children}</a>
+  <a className="text-green" href={link} target="blank" rel="noreferrer">{children}</a>
