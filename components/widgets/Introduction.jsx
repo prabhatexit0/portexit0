@@ -7,11 +7,16 @@ export default function Introduction() {
         Prabhat Sachdeva
       </h1>
       <p>
-        Hey there, I’m <b className="text-purple">prabhatexit0</b> on the internet.
+        Hey there, I’m <b className="text-purple">prabhatexit0</b> on the
+        internet.
       </p>
-      <p>I write code, mostly in <span className="text-purple">C++</span> and <span className="text-purple">TypeScript</span>. I love learning about Programming Languages and Compilers.</p>
       <p>
-        For more information, please refer to my{" "}
+        I write code, mostly in <span className="text-purple">C++</span> and{' '}
+        <span className="text-purple">TypeScript</span>. I love learning about
+        Programming Languages and Compilers.
+      </p>
+      <p>
+        For more information, please refer to my{' '}
         <a
           target="_blank"
           className="font-bold cursor-pointer border-[1px] px-2 border-gray-700 rounded-md hover:bg-gray-900 text-green border-green"

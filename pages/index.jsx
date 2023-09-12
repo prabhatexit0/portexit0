@@ -1,10 +1,10 @@
-import Head from "next/head"
-import Layout from "./layout"
-import { Introduction, Leetcode, Gsoc, Projects } from "../components/widgets/"
-import { GraphQLClient, gql } from "graphql-request"
+import Head from 'next/head'
+import Layout from './layout'
+import { Introduction, Leetcode, Gsoc, Projects } from '../components/widgets/'
+import { GraphQLClient, gql } from 'graphql-request'
 
 export const getStaticProps = async () => {
-  const endpoint = "https://leetcode.com/graphql"
+  const endpoint = 'https://leetcode.com/graphql'
   const graphQLClient = new GraphQLClient(endpoint)
 
   const query = gql`
@@ -40,10 +40,10 @@ export default function Home({ data }) {
         <meta name="description" content="its my portfolio website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout heading={"Prabhat Sachdeva"}>
+      <Layout heading={'Prabhat Sachdeva'}>
         <Introduction />
-        <Gsoc/>
-        <Projects/>
+        <Gsoc />
+        <Projects />
         <Leetcode data={data} />
       </Layout>
     </div>

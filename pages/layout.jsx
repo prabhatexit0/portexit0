@@ -1,5 +1,5 @@
-import { Navbar } from "../components"
-import Head from "next/head"
+import { Navbar } from '../components'
+import Head from 'next/head'
 
 export default function Layout({ children }) {
   return (
@@ -10,9 +10,7 @@ export default function Layout({ children }) {
       <Navbar />
       {children &&
         children.map((child, idx) => (
-          <ChildWrapper key={idx}>
-            {child}
-          </ChildWrapper>
+          <ChildWrapper key={idx}>{child}</ChildWrapper>
         ))}
     </LayoutContainer>
   )
@@ -29,8 +27,6 @@ const LayoutContainer = ({ children }) => (
 
 const ChildWrapper = ({ children }) => (
   <>
-    <div className={`p-5 m-2 mb-0 w-[90%] laptop:w-1/2`}>
-      {children}
-    </div>
+    <div className={`p-5 m-2 mb-0 w-[90%] laptop:w-1/2`}>{children}</div>
   </>
 )

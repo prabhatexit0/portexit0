@@ -1,9 +1,9 @@
-import Image from "next/image"
-import { useMinesweeper, GAME_STATE } from "./minesweeperLogic"
+import Image from 'next/image'
+import { useMinesweeper, GAME_STATE } from './minesweeperLogic'
 
 export default function Minesweeper() {
   let { board, blockClick, resetBoard, gameState } = useMinesweeper(8, 8)
-  let gameStatus = ["Tap any block to start!", "Game Started", "Game Over"]
+  let gameStatus = ['Tap any block to start!', 'Game Started', 'Game Over']
 
   return (
     <div className="w-full">
@@ -13,7 +13,7 @@ export default function Minesweeper() {
         <div className="flex flex-col gap-1 tablet:gap-1.5 w-max">
           {board.map((blocksRow, idx) => (
             <div className="flex gap-1 tablet:gap-1.5" key={idx}>
-              {blocksRow.map((block) => (
+              {blocksRow.map(block => (
                 <Block block={block} blockClick={blockClick} key={block.id} />
               ))}
             </div>
@@ -47,11 +47,11 @@ const Block = ({ block, blockClick }) => {
   }
 
   let colors = [
-    "bg-red-500",
-    "bg-blue-500",
-    "bg-emerald-500",
-    "bg-purple-500",
-    "bg-rose-500",
+    'bg-red-500',
+    'bg-blue-500',
+    'bg-emerald-500',
+    'bg-purple-500',
+    'bg-rose-500',
   ]
 
   return (
@@ -61,7 +61,7 @@ const Block = ({ block, blockClick }) => {
     flex justify-center items-center font-bold 
     ${
       bombsAround === 0 && isClicked
-        ? "bg-zinc-400"
+        ? 'bg-zinc-400'
         : colors[bombsAround % colors.length]
     }`}
     >
